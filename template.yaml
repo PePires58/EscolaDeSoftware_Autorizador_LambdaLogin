@@ -40,5 +40,5 @@ Resources:
     Type: AWS::Logs::LogGroup
     DependsOn: AutorizadorLambdaRealizarLoginFn
     Properties:
-      LogGroupName: !Join ["", "/aws/lambda/", !Ref Environment, "escoladesoftware-autorizador-lambdarealizarloginfn"]
+      LogGroupName: !Join ["", ["/aws/lambda/", !Ref Environment, "_escoladesoftware-autorizador-lambdarealizarloginfn"]]
       RetentionInDays: 2
