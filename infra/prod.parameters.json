@@ -1,0 +1,7 @@
+{
+  "Parameters": {
+    "Environment": "prod",
+    "UsuariosTableName": "tbes_usuarios",
+    "TokenTableName": "tbes_tokens"
+  }
+}
