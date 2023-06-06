@@ -20,7 +20,7 @@ exports.lambdaHandler = async (event, context) => {
     if (!userDbItem.Item)
         return errorResult(400, { 'Mensagem': 'Usuário ou senha inválidos' });
 
-    const userObject = createUserObjectService.createUserObject(userDbItem);
+    const userObject = createUserObjectService.createUserObject(userDbItem.Item);
 
     console.log('userObject');
     console.log(userObject);
