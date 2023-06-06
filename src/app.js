@@ -14,18 +14,10 @@ exports.lambdaHandler = async (event, context) => {
 
     const userDbItem = await getUserItemDynamoDbService.getUserOnDataBase(bodyJson.email);
 
-    console.log('user db item');
-    console.log(userDbItem);
-
     if (!userDbItem.Item)
         return errorResult(400, { 'Mensagem': 'Usuário ou senha inválidos' });
 
     const userObject = createUserObjectService.createUserObject(userDbItem.Item);
-
-    console.log('userObject');
-    console.log(userObject);
-    console.log('bodyJson');
-    console.log(bodyJson);
 
     if (validateUserCredentialsService.validateUserCredentials(
         userObject, bodyJson
@@ -38,13 +30,12 @@ exports.lambdaHandler = async (event, context) => {
                 token: token
             });
         } catch (error) {
+            console.log(error);
             return errorResult(500, error);
         }
     }
     else
         return errorResult(400, { 'Mensagem': 'Usuário ou senha inválidos' });
-
-
 }
 
 function errorResult(statusCode, errors) {

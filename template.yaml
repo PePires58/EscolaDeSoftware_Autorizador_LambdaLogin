@@ -35,3 +35,10 @@ Resources:
         Value: Autorizador
       - Key: Servico
         Value: Lambda
+
+  AutorizadorLambdaRealizarLoginLogGroup:
+    Type: AWS::Logs::LogGroup
+    DependsOn: AutorizadorLambdaRealizarLoginFn
+    Properties:
+      LogGroupName: !Join ["", "/aws/lambda/", !Ref Environment, "escoladesoftware-autorizador-lambdarealizarloginfn"]
+      RetentionInDays: 2
