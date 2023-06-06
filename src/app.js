@@ -1,4 +1,4 @@
-const validateCredentialsObjectService = require('./services/validate-credentials-object.service');
+const validateCredentialsObjectService = require('./services/user/validate-credentials-object.service');
 const getUserItemDynamoDbService = require('./services/user/get-user-item-dynamodb.service');
 const validateUserCredentialsService = require('./services/user/validate-user-credentials.service');
 const createUserObjectService = require('./services/user/create-user-object.service');
