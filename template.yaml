@@ -41,4 +41,4 @@ Resources:
     DependsOn: AutorizadorLambdaRealizarLoginFn
     Properties:
       LogGroupName: !Join ["", ["/aws/lambda/", !Ref Environment, "_escoladesoftware-autorizador-lambdarealizarloginfn"]]
-      RetentionInDays: 2
+      RetentionInDays: 3
