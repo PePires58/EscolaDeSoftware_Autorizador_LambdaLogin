@@ -3,6 +3,8 @@ const getUserItemDynamoDbService = require('./services/user/get-user-item-dynamo
 const validateUserCredentialsService = require('./services/user/validate-user-credentials.service');
 const createUserObjectService = require('./services/user/create-user-object.service');
 const createTokenService = require('./services/token/create-token.service');
+const createTokenPutItemService = require('./services/token/create-token-put-item.service');
+const putTokenItemDynamoDbService = require('./services/token/put-token-item-dynamodb.service');
 
 exports.lambdaHandler = async (event, context) => {
 
@@ -23,8 +25,12 @@ exports.lambdaHandler = async (event, context) => {
         userObject, bodyJson
     )) {
         userObject.deletarSenha();
+
         try {
             const token = createTokenService.createToken(userObject, 'minhaChave');
+            const tokenPutItem = createTokenPutItemService.createTokenPutItem(token);
+
+            await putTokenItemDynamoDbService.putTokenOnDatabase(tokenPutItem);
 
             return defaultResult(200, {
                 token: token
