@@ -3,7 +3,7 @@ const dynamodb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 exports.putTokenOnDatabase = async function (tokenItem) {
     const params = {
-        TableName: process.env.TableName,
+        TableName: process.env.TokenTableName,
         Item: tokenItem,
         ReturnConsumedCapacity: "TOTAL",
         ConditionExpression: "attribute_not_exists(token)"
