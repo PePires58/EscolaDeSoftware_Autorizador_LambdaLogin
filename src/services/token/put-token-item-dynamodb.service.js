@@ -6,7 +6,7 @@ exports.putTokenOnDatabase = async function (tokenItem) {
         TableName: process.env.TokenTableName,
         Item: tokenItem,
         ReturnConsumedCapacity: "TOTAL",
-        ConditionExpression: "attribute_not_exists(token)"
+        ConditionExpression: "attribute_not_exists(jwt_token)"
     };
 
     return await dynamodb.putItem(params)
