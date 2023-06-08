@@ -7,7 +7,7 @@ exports.createTokenPutItem = function (token) {
             S: token
         },
         "expiration_time": {
-            N: treehours
+            N: treehours.toString()
         }
     }
 }
