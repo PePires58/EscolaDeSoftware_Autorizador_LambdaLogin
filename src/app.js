@@ -27,7 +27,7 @@ exports.lambdaHandler = async (event, context) => {
         userObject.deletarSenha();
 
         try {
-            const token = createTokenService.createToken(userObject, 'minhaChave');
+            const token = await createTokenService.createToken(userObject);
             const tokenPutItem = createTokenPutItemService.createTokenPutItem(token);
 
             await putTokenItemDynamoDbService.putTokenOnDatabase(tokenPutItem);

@@ -11,6 +11,9 @@ Parameters:
   TokenTableName:
     Description: Token table name
     Type: String
+  TokenSecretParameterName:
+    Description: Token secret parameter name
+    Type: String
 
 Resources:  
   AutorizadorLambdaRealizarLoginFn:
@@ -24,10 +27,12 @@ Resources:
       Timeout: 2
       Policies:
         - AmazonDynamoDBFullAccess
+        - AmazonSSMReadOnlyAccess
       Environment:
         Variables:
           UsuariosTableName: !Ref UsuariosTableName
           TokenTableName: !Ref TokenTableName
+          TokenSecretParameterName: !Ref TokenSecretParameterName
     Tags: 
       - Key: Ambiente
         Value: !Ref Environment

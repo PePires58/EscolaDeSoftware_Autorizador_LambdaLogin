@@ -5,7 +5,7 @@ describe('Validate credentials object service tests', function () {
     it('Should create a token', function () {
         const token = createToeknService.createToken({
             'email': 'pedrao@gmail.com'
-        }, 'minhachave')
+        })
 
         assert.notEqual('', token);
     });
