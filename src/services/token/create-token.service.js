@@ -6,7 +6,7 @@ exports.createToken = async function (user) {
     const privateKey = await getTokenSecretService.getTokenSecretService();
 
     const token = jwt.sign(user, privateKey.Parameter.Value, {
-        expiresIn: '3h',
+        expiresIn: '2 days',
         issuer: 'escoladesoftware',
         notBefore: '120ms',
         subject: user.email + '-escoladesoftware-user-token',
