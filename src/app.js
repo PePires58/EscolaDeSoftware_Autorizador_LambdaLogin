@@ -33,7 +33,8 @@ exports.lambdaHandler = async (event, context) => {
             await putTokenItemDynamoDbService.putTokenOnDatabase(tokenPutItem);
 
             return defaultResult(200, {
-                token: token
+                token: token,
+                expiresIn: tokenPutItem.expiration_time.N
             });
         } catch (error) {
             console.log(error);
