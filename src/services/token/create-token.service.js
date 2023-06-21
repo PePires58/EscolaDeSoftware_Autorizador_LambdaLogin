@@ -1,17 +1,19 @@
-const jwt = require('jsonwebtoken');
-const getTokenSecretService = require('./get-token-secret.service');
+const esAutorizadorPkg = require('escoladesoftware-autorizador-package');
 
 exports.createToken = async function (user) {
 
-    const privateKey = await getTokenSecretService.getTokenSecretService();
+    const privateKey = await esAutorizadorPkg
+        .tokenSecret('process.env.TokenSecretParameterName', false);
 
-    const token = jwt.sign(user, privateKey.Parameter.Value, {
-        expiresIn: '2 days',
-        issuer: 'escoladesoftware',
-        notBefore: '120ms',
-        subject: user.email + '-escoladesoftware-user-token',
-        audience: 'escoladesoftware',
-    });
+    const token = esAutorizadorPkg.criaToken(user,
+        privateKey.Parameter.Value,
+        {
+            expiresIn: '2 days',
+            issuer: 'escoladesoftware',
+            notBefore: '120ms',
+            subject: user.email + '-escoladesoftware-user-token',
+            audience: 'escoladesoftware'
+        });
 
     return token;
 }
