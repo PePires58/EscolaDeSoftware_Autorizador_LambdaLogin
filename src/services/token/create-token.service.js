@@ -3,7 +3,7 @@ const esAutorizadorPkg = require('escoladesoftware-autorizador-package');
 exports.createToken = async function (user) {
 
     const privateKey = await esAutorizadorPkg
-        .tokenSecret('process.env.TokenSecretParameterName', false);
+        .tokenSecret(process.env.TokenSecretParameterName, false);
 
     const token = esAutorizadorPkg.criaToken(user,
         privateKey.Parameter.Value,
