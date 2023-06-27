@@ -1,4 +1,4 @@
-export class TokenEs {
+export interface TokenEs {
     token: string;
     expiresIn: string;
 }

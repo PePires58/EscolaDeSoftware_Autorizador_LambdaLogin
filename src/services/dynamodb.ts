@@ -1,8 +1,10 @@
-import { TokenEs } from './../models/token-es';
 import {
-    AttributeValue,
-    DynamoDBClient, GetItemCommand, GetItemCommandInput, GetItemCommandOutput, PutItemCommand, PutItemCommandInput, PutItemCommandOutput
+    AttributeValue, DynamoDBClient,
+    GetItemCommand, GetItemCommandInput, GetItemCommandOutput,
+    PutItemCommand, PutItemCommandInput
 } from "@aws-sdk/client-dynamodb";
+
+import { TokenEs } from './../models/token-es';
 import { Usuario } from "../models/usuario";
 import { Credenciais } from "../models/credenciais";
 
