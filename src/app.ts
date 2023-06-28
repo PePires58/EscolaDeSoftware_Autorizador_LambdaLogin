@@ -6,6 +6,8 @@ import { Credenciais } from './models/credenciais';
 import { Erro } from './models/erro';
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda/trigger/api-gateway-proxy';
+import { BuscaSegredoParameterStore } from 'escoladesoftware-autorizador-package-ts';
+import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
 
 export const lambdaHandler = async (
     event: APIGatewayProxyEvent
@@ -24,7 +26,10 @@ export const lambdaHandler = async (
     if (credenciais.SenhaEhValida(usuario.senha || '')) {
         usuario.DeletarSenha();
 
-        const token = await new CriarToken().CriarToken(usuario);
+        const privateKey = await new BuscaSegredoParameterStore()
+            .BuscarSegredo(process.env.TokenSecretParameterName || '', false);
+
+        const token = await new CriarToken().CriarToken(usuario as Usuario, privateKey);
 
         const tokenObject = await dynamoDbService.AdicionarToken(token);
 

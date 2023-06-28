@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-dynamodb";
 
 import { TokenEs } from './../models/token-es';
-import { Usuario } from "../models/usuario";
+import { UsuarioEs } from "../models/usuario";
 import { Credenciais } from "../models/credenciais";
 
 export class DynamoDbService {
@@ -16,7 +16,7 @@ export class DynamoDbService {
 
     private client: DynamoDBClient;
 
-    async ConsultaUsuario(credenciais: Credenciais): Promise<Usuario> {
+    async ConsultaUsuario(credenciais: Credenciais): Promise<UsuarioEs> {
 
         const input: GetItemCommandInput = {
             TableName: process.env.UsuariosTableName || '',
@@ -71,11 +71,11 @@ export class DynamoDbService {
         };
     }
 
-    private CriarObjetoUsuario(output: GetItemCommandOutput): Usuario {
+    private CriarObjetoUsuario(output: GetItemCommandOutput): UsuarioEs {
         if (output.Item) {
             const usuarioItem = output.Item;
 
-            const usuario: Usuario = new Usuario();
+            const usuario: UsuarioEs = new UsuarioEs();
             usuario.email = usuarioItem.email.S || '';
             usuario.nome = usuarioItem.nome.S || '';
             usuario.sobrenome = usuarioItem.sobrenome.S || '';
@@ -83,6 +83,6 @@ export class DynamoDbService {
 
             return usuario;
         }
-        return new Usuario();
+        return new UsuarioEs();
     }
 }

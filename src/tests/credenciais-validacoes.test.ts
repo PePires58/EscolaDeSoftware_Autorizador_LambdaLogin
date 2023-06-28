@@ -1,6 +1,6 @@
 import { CredenciaisValidacoes } from './../services/credenciais-validacoes';
 import { expect } from 'chai';
-import { describe } from 'mocha';
+import { describe, it } from 'mocha';
 import { Credenciais } from '../models/credenciais';
 
 describe('Testes para validação do objeto de credenciais', function () {

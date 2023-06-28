@@ -5,24 +5,23 @@
   "repository": "https://github.com/PePires58/EscolaDeSoftware_Autorizador_LambdaLogin",
   "main": "app.js",
   "scripts": {
-    "test": "mocha -r ts-node/register './tests/**/*.test.ts'"
+    "test": "mocha -r ts-node/register 'tests/**/*.test.ts'"
   },
   "author": "PEDRO HENRIQUE PIRES - Escola de Software",
   "license": "MIT",
-  "dependencies": {
-    "jsonwebtoken": "^9.0.0"
-  },
   "devDependencies": {
+    "@aws-sdk/client-ssm": "^3.361.0",
+    "chai": "^4.3.7",
+    "jsonwebtoken": "^9.0.0",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
     "@aws-sdk/client-dynamodb": "^3.358.0",
     "@types/aws-lambda": "^8.10.119",
     "@types/chai": "^4.3.5",
     "@types/jsonwebtoken": "^9.0.2",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.3.1",
-    "chai": "^4.3.7",
-    "escoladesoftware-autorizador-package-ts": "^1.0.4",
-    "mocha": "^10.1.0",
-    "ts-node": "^10.9.1",
+    "escoladesoftware-autorizador-package-ts": "^1.0.10",
     "typescript": "^5.1.3"
   }
 }

@@ -1,13 +1,9 @@
-import { Usuario } from './../models/usuario';
-import { CriaToken } from 'escoladesoftware-autorizador-package-ts'
-import { BuscaSegredoParameterStore } from 'escoladesoftware-autorizador-package-ts'
+import { CriaToken } from 'escoladesoftware-autorizador-package-ts';
+import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
 
 export class CriarToken {
 
-    async CriarToken(usuario: Usuario): Promise<string> {
-
-        const privateKey = await new BuscaSegredoParameterStore()
-            .BuscarSegredo(process.env.TokenSecretParameterName || '', false);
+    async CriarToken(usuario: Usuario, privateKey: string): Promise<string> {
 
         const token = CriaToken.CriarToken(usuario,
             privateKey,

@@ -1,4 +1,4 @@
-export class Usuario {
+export class UsuarioEs {
 
     constructor() {
         this.email = '';
