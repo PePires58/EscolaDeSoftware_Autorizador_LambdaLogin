@@ -41,6 +41,7 @@ export const lambdaHandler = async (
 
     erros.push(new Erro('Usuário ou senha inválidos'));
     return errorResult(400, erros);
+
 }
 
 function errorResult(statusCode: number, erros: Erro[]) {
