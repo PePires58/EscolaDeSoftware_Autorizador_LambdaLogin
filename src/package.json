@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "contém uma lambda que realiza o login de um usuário",
   "repository": "https://github.com/PePires58/EscolaDeSoftware_Autorizador_LambdaLogin",
-  "main": "built/app.js",
+  "main": "app.js",
   "scripts": {
     "test": "mocha -r ts-node/register 'tests/**/*.test.ts'"
   },
