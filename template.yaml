@@ -22,7 +22,7 @@ Resources:
       Description: register an user on database
       FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-autorizador-lambdarealizarloginfn"]]
       Handler: app.lambdaHandler
-      CodeUri: src/
+      CodeUri: src/built
       Runtime: nodejs18.x
       Timeout: 2
       Policies:
