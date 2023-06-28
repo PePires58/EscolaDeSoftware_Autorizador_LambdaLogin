@@ -1,4 +1,4 @@
-import { CriaToken } from 'escoladesoftware-autorizador-package-ts';
+import { CriaToken } from 'escoladesoftware-autorizador-package-ts/lib';
 import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
 
 export class CriarToken {

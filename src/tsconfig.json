@@ -13,10 +13,10 @@
     "skipLibCheck": true
   },
   "include": [
-    "./*",
+    "./*"
   ],
   "exclude": [
-    //"/node_modules(?!\/escoladesoftware-autorizador-package-ts)/",
+    "node_modules",
     "./tests/*"
   ]
 }
