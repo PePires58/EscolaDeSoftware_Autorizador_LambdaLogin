@@ -1,4 +1,3 @@
-import { CriarToken } from './services/criar-token';
 import { DynamoDbService } from './services/dynamodb';
 import { CredenciaisValidacoes } from './services/credenciais-validacoes';
 import { Credenciais } from './models/credenciais';
