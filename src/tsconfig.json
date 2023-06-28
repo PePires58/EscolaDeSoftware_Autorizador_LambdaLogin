@@ -12,7 +12,8 @@
     "skipLibCheck": true
   },
   "include": [
-    "./*"
+    "./*",
+    "./node_modules/escoladesoftware-autorizador-package-ts/lib/*"
   ],
   "exclude": [
     "/node_modules(?!\/escoladesoftware-autorizador-package-ts)/",
