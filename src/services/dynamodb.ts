@@ -5,7 +5,7 @@ import {
 } from "@aws-sdk/client-dynamodb";
 
 import { TokenEs } from './../models/token-es';
-import { UsuarioEs } from "../models/usuario";
+import { UsuarioEs } from "../models/usuario-es";
 import { Credenciais } from "../models/credenciais";
 
 export class DynamoDbService {
