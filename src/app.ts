@@ -22,33 +22,40 @@ export const lambdaHandler = async (
 
     const dynamoDbService = new DynamoDbService();
 
-    const usuario = await dynamoDbService.ConsultaUsuario(credenciais);
-    if (credenciais.SenhaEhValida(usuario.senha || '')) {
-        usuario.DeletarSenha();
+    try {
 
-        const privateKey = await new BuscaSegredoParameterStore()
-            .BuscarSegredo(process.env.TokenSecretParameterName || '', false);
+        const usuario = await dynamoDbService.ConsultaUsuario(credenciais);
+        if (credenciais.SenhaEhValida(usuario.senha || '')) {
+            usuario.DeletarSenha();
 
-        const token = new CriaToken().CriarToken(usuario as Usuario,
-            privateKey,
-            {
-                expiresIn: '2 days',
-                issuer: 'escoladesoftware',
-                notBefore: '120ms',
-                subject: usuario.email + '-escoladesoftware-user-token',
-                audience: 'escoladesoftware'
+            const privateKey = await new BuscaSegredoParameterStore()
+                .BuscarSegredo(process.env.TokenSecretParameterName || '', false);
+
+            const token = new CriaToken().CriarToken(usuario as Usuario,
+                privateKey,
+                {
+                    expiresIn: '2 days',
+                    issuer: 'escoladesoftware',
+                    notBefore: '120ms',
+                    subject: usuario.email + '-escoladesoftware-user-token',
+                    audience: 'escoladesoftware'
+                });
+
+            const tokenObject = await dynamoDbService.AdicionarToken(token);
+
+            return defaultResult(200, {
+                token: tokenObject.token,
+                expiresIn: tokenObject.expiresIn
             });
+        }
 
-        const tokenObject = await dynamoDbService.AdicionarToken(token);
-
-        return defaultResult(200, {
-            token: tokenObject.token,
-            expiresIn: tokenObject.expiresIn
-        });
+        erros.push(new Erro('Usuário ou senha inválidos'));
+        return errorResult(400, erros);
     }
-
-    erros.push(new Erro('Usuário ou senha inválidos'));
-    return errorResult(400, erros);
+    catch (error) {
+        console.log(error);
+        throw error;
+    }
 }
 
 function errorResult(statusCode: number, erros: Erro[]) {
