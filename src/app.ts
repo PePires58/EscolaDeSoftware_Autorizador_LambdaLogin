@@ -5,7 +5,7 @@ import { Credenciais } from './models/credenciais';
 import { Erro } from './models/erro';
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda/trigger/api-gateway-proxy';
-import { BuscaSegredoParameterStore } from 'escoladesoftware-autorizador-package-ts/lib/services/busca-segredo-parameter-store';
+import { BuscaSegredoParameterStore } from 'escoladesoftware-autorizador-package-ts/lib';
 //import { CriaToken } from 'escoladesoftware-autorizador-package-ts';
 import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
 
