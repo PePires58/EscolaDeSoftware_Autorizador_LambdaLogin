@@ -1,5 +1,6 @@
-import jwt, { SignOptions } from 'jsonwebtoken';
+import { SignOptions } from 'jsonwebtoken';
 import { Usuario } from '../models/usuario';
+const jwt = require('jsonwebtoken');
 
 export class CriaToken {
     CriarToken(

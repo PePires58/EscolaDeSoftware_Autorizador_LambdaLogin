@@ -13,11 +13,12 @@
     "skipLibCheck": true,
   },
   "references": [],
-  "include": [
-    "./*"
-  ],
   "exclude": [
-    "node_modules",
+    "./node_modules",
     "./tests/*"
-  ]
+  ],
+  "include": [
+    "./*",
+    "./node_modules/jsonwebtoken"
+  ],
 }
