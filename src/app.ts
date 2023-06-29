@@ -23,6 +23,7 @@ export const lambdaHandler = async (
     const dynamoDbService = new DynamoDbService();
 
     try {
+
         const usuario = await dynamoDbService.ConsultaUsuario(credenciais);
         if (credenciais.SenhaEhValida(usuario.senha || '')) {
             usuario.DeletarSenha();
