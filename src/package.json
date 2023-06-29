@@ -9,9 +9,6 @@
   },
   "author": "PEDRO HENRIQUE PIRES - Escola de Software",
   "license": "MIT",
-  "dependencies": {
-    "escoladesoftware-autorizador-package-ts": "^1.0.10"
-  },
   "devDependencies": {
     "@aws-sdk/client-ssm": "^3.361.0",
     "@aws-sdk/client-dynamodb": "^3.358.0",

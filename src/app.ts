@@ -1,13 +1,13 @@
 import { DynamoDbService } from './services/dynamodb';
 import { CredenciaisValidacoes } from './services/credenciais-validacoes';
-import { Credenciais } from './models/credenciais';
+import { CriaToken } from './services/cria-token';
+import { BuscaSegredoParameterStore } from './services/busca-segredo-parameter-store';
 
+import { Credenciais } from './models/credenciais';
 import { Erro } from './models/erro';
+import { Usuario } from './models/usuario';
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda/trigger/api-gateway-proxy';
-import { BuscaSegredoParameterStore } from 'escoladesoftware-autorizador-package-ts/lib';
-//import { CriaToken } from 'escoladesoftware-autorizador-package-ts';
-import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
 
 export const lambdaHandler = async (
     event: APIGatewayProxyEvent
@@ -29,16 +29,15 @@ export const lambdaHandler = async (
         const privateKey = await new BuscaSegredoParameterStore()
             .BuscarSegredo(process.env.TokenSecretParameterName || '', false);
 
-        const token = 'meutoken';
-        // const token = CriaToken.CriarToken(usuario as Usuario,
-        //     privateKey,
-        //     {
-        //         expiresIn: '2 days',
-        //         issuer: 'escoladesoftware',
-        //         notBefore: '120ms',
-        //         subject: usuario.email + '-escoladesoftware-user-token',
-        //         audience: 'escoladesoftware'
-        //     });
+        const token = new CriaToken().CriarToken(usuario as Usuario,
+            privateKey,
+            {
+                expiresIn: '2 days',
+                issuer: 'escoladesoftware',
+                notBefore: '120ms',
+                subject: usuario.email + '-escoladesoftware-user-token',
+                audience: 'escoladesoftware'
+            });
 
         const tokenObject = await dynamoDbService.AdicionarToken(token);
 
