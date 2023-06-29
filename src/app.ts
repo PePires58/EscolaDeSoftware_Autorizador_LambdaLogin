@@ -66,10 +66,10 @@ function errorResult(statusCode: number, erros: Erro[]) {
 
 function defaultResult(statusCode: number, object: object) {
     return {
-        'statusCode': statusCode,
-        'body': JSON.stringify(object),
-        'isBase64Encoded': false,
-        'headers': {
+        statusCode: statusCode,
+        body: JSON.stringify(object),
+        isBase64Encoded: false,
+        headers: {
             'Content-Type': 'application/json'
         }
     }

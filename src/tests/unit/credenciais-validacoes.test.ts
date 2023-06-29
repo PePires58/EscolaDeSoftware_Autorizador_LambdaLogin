@@ -1,7 +1,6 @@
-import { CredenciaisValidacoes } from './../services/credenciais-validacoes';
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { Credenciais } from '../models/credenciais';
+import { CredenciaisValidacoes } from '../../services/credenciais-validacoes';
+import { expect, describe, it } from '@jest/globals';
+import { Credenciais } from '../../models/credenciais';
 
 describe('Testes para validação do objeto de credenciais', function () {
 
@@ -12,6 +11,6 @@ describe('Testes para validação do objeto de credenciais', function () {
 
         const result = new CredenciaisValidacoes().ValidarObjeto(credenciais);
 
-        expect(result.length).to.be.equal(0);
+        expect(result.length).toEqual(0);
     });
 });

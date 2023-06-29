@@ -1,0 +1,12 @@
+name: Feature workflow - Lambda Function
+on:
+  push:
+    branches: [feature**]
+
+jobs:
+
+  Build-lambda:
+    uses: PePires58/ReusableWorkflows/.github/workflows/005_typescript_build.yaml@main
+    with: 
+      build-js-directory: "node_modules"
+

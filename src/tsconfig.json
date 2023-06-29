@@ -1,25 +1,15 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "moduleResolution": "Node",
-    "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "./built",
-    "preserveConstEnums": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true,
-  },
-  "references": [],
-  "exclude": [
-    "./node_modules",
-    "./tests/*"
-  ],
-  "include": [
-    "./*",
-    "./node_modules/jsonwebtoken",
-    "./node_modules/@types/jsonwebtoken"
-  ],
-}
+    "compilerOptions": {
+      "target": "es2020",
+      "strict": true,
+      "preserveConstEnums": true,
+      "noEmit": true,
+      "sourceMap": false,
+      "module":"es2015",
+      "moduleResolution":"node",
+      "esModuleInterop": true, 
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,  
+    },
+    "exclude": ["node_modules", "**/*.test.ts"]
+  }

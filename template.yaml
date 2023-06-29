@@ -1,6 +1,7 @@
-AWSTemplateFormatVersion: "2010-09-09"
+AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: Escola de software - Autorizador - Lambda para realizar o login
+
 Parameters:
   Environment:
     Description: Environment
@@ -15,16 +16,18 @@ Parameters:
     Description: Token secret parameter name
     Type: String
 
-Resources:  
+Resources:
   AutorizadorLambdaRealizarLoginFn:
     Type: AWS::Serverless::Function
     Properties:
       Description: register an user on database
-      FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-autorizador-lambdarealizarloginfn"]]
+      FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-autorizador-lambdarealizarloginfn"]]      
       Handler: app.lambdaHandler
-      CodeUri: src/built
+      CodeUri: hello-world/
       Runtime: nodejs18.x
       Timeout: 2
+      Architectures:
+        - x86_64
       Policies:
         - AmazonDynamoDBFullAccess
         - AmazonSSMReadOnlyAccess
@@ -40,6 +43,14 @@ Resources:
         Value: Autorizador
       - Key: Servico
         Value: Lambda
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: "es2020"
+        Sourcemap: true
+        EntryPoints: 
+        - app.ts
 
   AutorizadorLambdaRealizarLoginLogGroup: 
     Type: AWS::Logs::LogGroup
