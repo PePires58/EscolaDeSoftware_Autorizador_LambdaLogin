@@ -10,6 +10,7 @@ jobs:
     with: 
       stack-name: "dev-escoladesoftware-autorizador-lambdarealizarlogin-fn"
       parameters-file-path: "infra/dev.parameters.json"
+      build-js-directory: "node_modules"
     secrets:
       AWS_BUCKET_DEPLOY: ${{ secrets.AWS_BUCKET_DEPLOY }}
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
