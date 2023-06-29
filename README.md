@@ -9,5 +9,5 @@ Obrigado
 # Escola de Software - Authorizer - Login Lambda
 
 This repository contains a lambda function to authorize an user with it's token. Therefore, contains the infrastructure template  and CI/CD.
-
+ 
 Thanks

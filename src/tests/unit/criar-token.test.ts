@@ -1,7 +1,6 @@
-import { CriaToken } from '../services/cria-token';
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import { Usuario } from '../models/usuario';
+import { CriaToken } from '../../services/cria-token';
+import { expect, describe, it } from '@jest/globals';
+import { Usuario } from '../../models/usuario';
 
 describe('Testes de criação do token', () => {
     it('Deve criar um token', () => {
@@ -23,7 +22,7 @@ describe('Testes de criação do token', () => {
                 subject: 'pedrao@gmail.com-pedrao'
             });
 
-        expect(token).to.be.not.empty;
+        expect(token).not.toEqual('');
     });
 
     it('Deve criar um token sem passar alguns parametros', () => {
@@ -43,6 +42,6 @@ describe('Testes de criação do token', () => {
                 subject: 'pedrao@gmail.com-pedrao'
             });
 
-        expect(token).to.be.not.empty;
+        expect(token).not.toEqual('');
     });
 });
