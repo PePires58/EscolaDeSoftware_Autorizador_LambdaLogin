@@ -10,7 +10,8 @@
   "author": "PEDRO HENRIQUE PIRES - Escola de Software",
   "license": "MIT",
   "dependencies": {
-    "jsonwebtoken": "^9.0.0"
+    "jsonwebtoken": "^9.0.0",
+    "@types/jsonwebtoken": "^9.0.2"
   },
   "devDependencies": {
     "@aws-sdk/client-ssm": "^3.361.0",
@@ -20,7 +21,6 @@
     "ts-node": "^10.9.1",
     "@types/aws-lambda": "^8.10.119",
     "@types/chai": "^4.3.5",
-    "@types/jsonwebtoken": "^9.0.2",
     "@types/mocha": "^10.0.1",
     "@types/node": "^20.3.1",
     "typescript": "^5.1.3"
