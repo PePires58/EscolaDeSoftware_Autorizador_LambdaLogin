@@ -1,11 +1,11 @@
 import { DynamoDbService } from './services/dynamodb';
 import { CredenciaisValidacoes } from './services/credenciais-validacoes';
-import { CriaToken } from './services/cria-token';
-import { BuscaSegredoParameterStore } from './services/busca-segredo-parameter-store';
 
 import { Credenciais } from './models/credenciais';
 import { Erro } from './models/erro';
-import { Usuario } from './models/usuario';
+
+import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
+import { CriaToken, BuscaSegredoParameterStore } from 'escoladesoftware-autorizador-package-ts/lib';
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda/trigger/api-gateway-proxy';
 
