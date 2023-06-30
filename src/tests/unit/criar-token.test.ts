@@ -1,3 +1,4 @@
+import { UsuarioEs } from './../../models/usuario-es';
 import { CriaToken } from '../../services/cria-token';
 import { expect, describe, it } from '@jest/globals';
 import { Usuario } from '../../models/usuario';
@@ -5,14 +6,15 @@ import { Usuario } from '../../models/usuario';
 describe('Testes de criação do token', () => {
     it('Deve criar um token', () => {
         const chaveToken = 'minhaChave';
-        const usuario: Usuario = {
+        const usuario: UsuarioEs = {
             nome: 'pedro',
             sobrenome: 'pires',
             email: 'pedrao@gmail.com',
-            cpf: '11111111111'
+            cpf: '11111111111',
+            senha: ''
         };
 
-        const token = new CriaToken().CriarToken(usuario,
+        const token = new CriaToken().CriarToken(usuario as Usuario,
             chaveToken,
             {
                 expiresIn: '2 days',
@@ -27,14 +29,15 @@ describe('Testes de criação do token', () => {
 
     it('Deve criar um token sem passar alguns parametros', () => {
         const chaveToken = 'minhaChave';
-        const usuario: Usuario = {
+        const usuario: UsuarioEs = {
             nome: 'pedro',
             sobrenome: 'pires',
             email: 'pedrao@gmail.com',
-            cpf: '11111111111'
+            cpf: '11111111111',
+            senha: ''
         };
 
-        const token = new CriaToken().CriarToken(usuario,
+        const token = new CriaToken().CriarToken(usuario as Usuario,
             chaveToken,
             {
                 issuer: 'pedrao',
