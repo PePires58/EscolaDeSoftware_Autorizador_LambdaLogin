@@ -1,7 +1,7 @@
 import { UsuarioEs } from './../../models/usuario-es';
-import { CriaToken } from '../../services/cria-token';
+import { CriaToken } from 'escoladesoftware-autorizador-package-ts/lib';
 import { expect, describe, it } from '@jest/globals';
-import { Usuario } from '../../models/usuario';
+import { Usuario } from 'escoladesoftware-autorizador-package-ts/lib/models/usuario';
 
 describe('Testes de criação do token', () => {
     it('Deve criar um token', () => {
