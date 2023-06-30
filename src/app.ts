@@ -9,58 +9,53 @@ import { Usuario } from './models/usuario';
 
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda/trigger/api-gateway-proxy';
 
-export const lambdaHandler = async (
-    event: APIGatewayProxyEvent
-): Promise<APIGatewayProxyResult> => {
-
+export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     let erros: Erro[] = [];
     const credenciais: Credenciais = JSON.parse(event.body || '');
 
     erros = new CredenciaisValidacoes().ValidarObjeto(credenciais);
-    if (erros.length > 0)
-        return errorResult(400, erros);
+    if (erros.length > 0) return errorResult(400, erros);
 
     const dynamoDbService = new DynamoDbService();
 
     try {
-
         const usuario = await dynamoDbService.ConsultaUsuario(credenciais);
-        if (credenciais.SenhaEhValida(usuario.senha || '')) {
+        const senhaEhValida = credenciais.senha === usuario.senha || '';
+        if (senhaEhValida) {
             usuario.DeletarSenha();
 
-            const privateKey = await new BuscaSegredoParameterStore()
-                .BuscarSegredo(process.env.TokenSecretParameterName || '', false);
+            const privateKey = await new BuscaSegredoParameterStore().BuscarSegredo(
+                process.env.TokenSecretParameterName || '',
+                false,
+            );
 
-            const token = new CriaToken().CriarToken(usuario as Usuario,
-                privateKey,
-                {
-                    expiresIn: '2 days',
-                    issuer: 'escoladesoftware',
-                    notBefore: '120ms',
-                    subject: usuario.email + '-escoladesoftware-user-token',
-                    audience: 'escoladesoftware'
-                });
+            const token = new CriaToken().CriarToken(usuario as Usuario, privateKey, {
+                expiresIn: '2 days',
+                issuer: 'escoladesoftware',
+                notBefore: '120ms',
+                subject: usuario.email + '-escoladesoftware-user-token',
+                audience: 'escoladesoftware',
+            });
 
             const tokenObject = await dynamoDbService.AdicionarToken(token);
 
             return defaultResult(200, {
                 token: tokenObject.token,
-                expiresIn: tokenObject.expiresIn
+                expiresIn: tokenObject.expiresIn,
             });
         }
 
         erros.push(new Erro('Usuário ou senha inválidos'));
         return errorResult(400, erros);
-    }
-    catch (error) {
+    } catch (error) {
         console.log(error);
         throw error;
     }
-}
+};
 
 function errorResult(statusCode: number, erros: Erro[]) {
     return defaultResult(statusCode, {
-        erros: erros
+        erros: erros,
     });
 }
 
@@ -70,7 +65,7 @@ function defaultResult(statusCode: number, object: object) {
         body: JSON.stringify(object),
         isBase64Encoded: false,
         headers: {
-            'Content-Type': 'application/json'
-        }
-    }
+            'Content-Type': 'application/json',
+        },
+    };
 }
