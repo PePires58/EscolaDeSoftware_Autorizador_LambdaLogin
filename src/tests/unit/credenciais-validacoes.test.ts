@@ -5,9 +5,10 @@ import { Credenciais } from '../../models/credenciais';
 describe('Testes para validação do objeto de credenciais', function () {
 
     it('Não deve conter erros', function () {
-        const credenciais: Credenciais = new Credenciais();
-        credenciais.email = 'pedrao@gmail.com';
-        credenciais.senha = 'minhaSenha';
+        const credenciais: Credenciais = {
+            email: 'pedrao@gmail.com',
+            senha: 'minhaSenha'
+        };
 
         const result = new CredenciaisValidacoes().ValidarObjeto(credenciais);
 
