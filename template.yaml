@@ -20,7 +20,7 @@ Resources:
   AutorizadorLambdaRealizarLoginFn:
     Type: AWS::Serverless::Function
     Properties:
-      Description: register an user on database
+      Description: Register a token and returns it
       FunctionName: !Join ["_", [!Ref Environment, "escoladesoftware-autorizador-lambdarealizarloginfn"]]      
       Handler: app.lambdaHandler
       CodeUri: src/
