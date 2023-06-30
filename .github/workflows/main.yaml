@@ -8,7 +8,7 @@ jobs:
     uses: PePires58/ReusableWorkflows/.github/workflows/005_typescript_deploy_pipeline.yaml@main
     with: 
       stack-name: "prod-escoladesoftware-autorizador-lambdarealizarlogin-fn"
-      parameters-file-path: "infra/prod.parameters.json"
+      parameters-file-path: "infra/prod.parameters.txt"
       build-js-directory: "node_modules"
     secrets:
       AWS_BUCKET_DEPLOY: ${{ secrets.AWS_BUCKET_DEPLOY }}
