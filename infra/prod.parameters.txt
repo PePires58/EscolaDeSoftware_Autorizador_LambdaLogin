@@ -1,4 +1,4 @@
-"Environment"="prod",
-"UsuariosTableName"="tbes_usuarios",
-"TokenTableName"="tbes_tokens",
-"TokenSecretParameterName"="/escoladesoftware/prod/tokenkey"
+Environment="prod",
+UsuariosTableName="tbes_usuarios",
+TokenTableName="tbes_tokens",
+TokenSecretParameterName="/escoladesoftware/prod/tokenkey"
