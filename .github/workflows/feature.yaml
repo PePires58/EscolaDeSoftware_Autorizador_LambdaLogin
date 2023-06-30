@@ -10,3 +10,17 @@ jobs:
     with: 
       build-js-directory: "node_modules"
 
+  Pull-request:
+    permissions:
+      pull-requests: write
+    runs-on: ubuntu-latest
+    needs: [Build-lambda]
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Create pull request
+        run: |
+          CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+          gh pr create -B development -H $CURRENT_BRANCH  --title 'Feature to development' --body 'Pull request to go to development' || true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
