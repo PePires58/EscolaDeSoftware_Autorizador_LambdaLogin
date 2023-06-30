@@ -75,14 +75,22 @@ export class DynamoDbService {
         if (output.Item) {
             const usuarioItem = output.Item;
 
-            const usuario: UsuarioEs = new UsuarioEs();
-            usuario.email = usuarioItem.email.S || '';
-            usuario.nome = usuarioItem.nome.S || '';
-            usuario.sobrenome = usuarioItem.sobrenome.S || '';
-            usuario.senha = usuarioItem.senha.S || '';
+            const usuario: UsuarioEs = {
+                email: usuarioItem.email.S || '',
+                nome: usuarioItem.nome.S || '',
+                sobrenome: usuarioItem.sobrenome.S || '',
+                senha: usuarioItem.senha.S || '',
+                cpf: ''
+            };
 
             return usuario;
         }
-        return new UsuarioEs();
+        return {
+            email: '',
+            nome: '',
+            sobrenome: '',
+            senha: '',
+            cpf: ''
+        };
     }
 }

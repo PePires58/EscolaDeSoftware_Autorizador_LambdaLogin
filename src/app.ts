@@ -22,7 +22,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         const usuario = await dynamoDbService.ConsultaUsuario(credenciais);
         const senhaEhValida = credenciais.senha === usuario.senha || '';
         if (senhaEhValida) {
-            usuario.DeletarSenha();
+            usuario.senha = '';
 
             const privateKey = await new BuscaSegredoParameterStore().BuscarSegredo(
                 process.env.TokenSecretParameterName || '',
